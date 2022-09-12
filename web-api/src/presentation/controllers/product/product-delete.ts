@@ -1,6 +1,4 @@
-import { badRequest, serverError, ok } from "../../helpers/http-helper";
-
-import { MissingParamError, InvalidParamError } from "../../errors/index";
+import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import db from "../../../infra/db/postgres/models";
 
