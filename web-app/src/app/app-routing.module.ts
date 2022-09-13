@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ProductCreateComponent } from "./components/product/product-create/product-create.component";
-import { ProductDeleteComponent } from "./components/product/product-delete/product-delete.component";
-import { ProductUpdateComponent } from "./components/product/product-update/product-update.component";
+import { TaskCreateComponent } from "./components/task/task-create/task-create.component";
+import { TaskDeleteComponent } from "./components/task/task-delete/task-delete.component";
+import { TaskUpdateComponent } from "./components/task/task-update/task-update.component";
 import { HomeComponent } from "./views/home/home.component";
-import { ProductCrudComponent } from "./views/product-crud/product-crud.component";
+import { TaskCrudComponent } from "./views/tasks-crud/tasks-crud.component";
 
 const routes: Routes = [
   {
@@ -12,20 +12,20 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: "products",
-    component: ProductCrudComponent,
+    path: "tasks",
+    component: TaskCrudComponent,
   },
   {
-    path: "products/create",
-    component: ProductCreateComponent,
+    path: "tasks/create",
+    component: TaskCreateComponent,
   },
   {
-    path: "products/update/:id",
-    component: ProductUpdateComponent,
+    path: "tasks/update/:id",
+    component: TaskUpdateComponent,
   },
   {
-    path: "products/delete/:id",
-    component: ProductDeleteComponent,
+    path: "tasks/delete/:id",
+    component: TaskDeleteComponent,
   },
   
 ];

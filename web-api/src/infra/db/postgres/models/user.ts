@@ -1,11 +1,8 @@
 'use strict';
 import { Model } from 'sequelize';
+import { IUser } from '../../../../domain/models/user'
 
-interface IUser {
-  id: number;
-  name: string;
-  role_id: string;
-}
+
 module.exports = (sequelize: any, DataTypes:any ) => {
   class user extends Model<IUser> implements IUser {
     id!: number;

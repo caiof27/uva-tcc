@@ -1,11 +1,7 @@
 'use strict';
 import { Model }from 'sequelize';
+import { IRole } from '../../../../domain/models/role'
 
-
-interface IRole {
-  id: number;
-  role: string;
-}
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class role extends Model<IRole> implements IRole {

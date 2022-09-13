@@ -3,22 +3,22 @@ import { Router } from "@angular/router";
 import { HeaderService } from "src/app/components/template/header/header.service";
 
 @Component({
-  selector: "app-product-crud",
-  templateUrl: "./product-crud.component.html",
-  styleUrls: ["./product-crud.component.css"],
+  selector: "app-tasks-crud",
+  templateUrl: "./tasks-crud.component.html",
+  styleUrls: ["./tasks-crud.component.css"],
 })
-export class ProductCrudComponent implements OnInit {
+export class TaskCrudComponent implements OnInit {
   constructor(private router: Router, private headerService: HeaderService) {
     headerService.headerData = {
-      title: "Cadastro de Produtos",
+      title: "Abrir chamado",
       icon: "storefront",
-      routeUrl: "/products",
+      routeUrl: "/tasks",
     };
   }
 
   ngOnInit(): void {}
 
-  navigateToProductCreate(): void {
-    this.router.navigate(["/products/create"]);
+  navigateToTaskCreate(): void {
+    this.router.navigate(["/tasks/create"]);
   }
 }

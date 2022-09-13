@@ -1,11 +1,6 @@
 'use strict';
 import { Model }from 'sequelize';
-
-interface IAttachment {
-  id: number;
-  filename: string;
-  task_id: number;
-}
+import { IAttachment } from '../../../../domain/models/attachment'
 
 module.exports = (sequelize:any, DataTypes:any) => {
   class attachment extends Model<IAttachment> implements IAttachment {

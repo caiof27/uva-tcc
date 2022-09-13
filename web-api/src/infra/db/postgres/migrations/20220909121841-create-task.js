@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       priority: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       description: {
@@ -41,7 +41,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       finishedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
     });

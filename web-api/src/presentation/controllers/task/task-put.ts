@@ -4,7 +4,7 @@ import { MissingParamError, InvalidParamError } from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import db from "../../../infra/db/postgres/models";
 
-export class ProductPostController implements Controller {
+export class TaskPutController implements Controller {
   constructor() {}
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const requireFields = ["name", "price"];
@@ -15,12 +15,19 @@ export class ProductPostController implements Controller {
       }
     }
 
+    const id = httpRequest.params["id"];
+
     const { name, price } = httpRequest.body;
 
-    const account = await db.product.create({
-      name,
-      price,
-    });
+    await db.task.update(
+      {
+        name,
+        price,
+      },
+      { where: { id } }
+    );
+
+    const account = await db.task.findOne({ where: { id } });
 
     return ok(account);
   }

@@ -2,13 +2,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { catchError, EMPTY, map, Observable } from "rxjs";
-import { Product } from "./product.model";
+import { ITask } from "./task.model";
 
 @Injectable({
   providedIn: "root",
 })
-export class ProductService {
-  baseUrl = "http://localhost:3000/products";
+export class TaskService {
+  baseUrl = "http://localhost:3000/tasks";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
@@ -25,40 +25,40 @@ export class ProductService {
     return EMPTY;
   }
 
-  create(product: Product): Observable<Product> {
+  create(task: ITask): Observable<ITask> {
     const url = `${this.baseUrl}/create`;
-    return this.http.post<Product>(url, product).pipe(
+    return this.http.post<ITask>(url, task).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  read(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl).pipe(
+  read(): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.baseUrl).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  readById(id: string): Observable<Product> {
+  readById(id: string): Observable<ITask> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(
+    return this.http.get<ITask>(url).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  update(product: Product): Observable<Product> {
-    const url = `${this.baseUrl}/update/${product.id}`;
-    return this.http.put<Product>(url, product).pipe(
+  update(task: ITask): Observable<ITask> {
+    const url = `${this.baseUrl}/update/${task.id}`;
+    return this.http.put<ITask>(url, task).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  delete(id: string): Observable<Product> {
+  delete(id: string): Observable<ITask> {
     const url = `${this.baseUrl}/delete/${id}`;
-    return this.http.delete<Product>(url).pipe(
+    return this.http.delete<ITask>(url).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
