@@ -21,14 +21,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdBy: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      assingTo: {
+      assignTo: {
         allowNull: true,
         type: Sequelize.INTEGER
       }, 

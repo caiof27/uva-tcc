@@ -1,10 +1,10 @@
-import { badRequest, serverError, ok } from "../../helpers/http-helper";
+import { badRequest, ok } from "../../helpers/http-helper";
 
-import { MissingParamError, InvalidParamError } from "../../errors/index";
+import { MissingParamError} from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import db from "../../../infra/db/postgres/models";
 
-export class ProductPutController implements Controller {
+export class RolePutController implements Controller {
   constructor() {}
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const requireFields = ["name", "price"];
@@ -19,7 +19,7 @@ export class ProductPutController implements Controller {
 
     const { name, price } = httpRequest.body;
 
-    await db.product.update(
+    await db.role.update(
       {
         name,
         price,
@@ -27,8 +27,8 @@ export class ProductPutController implements Controller {
       { where: { id } }
     );
 
-    const account = await db.product.findOne({ where: { id } });
+    const role = await db.role.findOne({ where: { id } });
 
-    return ok(account);
+    return ok(role);
   }
 }

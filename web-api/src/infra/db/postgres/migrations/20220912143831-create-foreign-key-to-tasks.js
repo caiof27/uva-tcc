@@ -18,7 +18,7 @@ module.exports = {
     await queryInterface.addConstraint({tableName,schema},{
       type: 'FOREIGN KEY',
       name: 'FK-Task_assignTo-User_id',
-      fields: ['assingTo'],
+      fields: ['assignTo'],
       references:{
         table: {tableName: 'users', schema},
         field: 'id'
