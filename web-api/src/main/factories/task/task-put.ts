@@ -1,6 +1,6 @@
-import { TaskPutController } from "../../../presentation/controllers/task/task-put";
+import { TaskPatchController } from "../../../presentation/controllers/task/task-patch";
 import { Controller } from "../../../presentation/protocols";
 
-export const makeTaskPutController = (): Controller =>{
-    return new TaskPutController();
+export const makeTaskPatchController = (): Controller =>{
+    return new TaskPatchController();
 }

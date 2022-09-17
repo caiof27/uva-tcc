@@ -17,10 +17,13 @@ export class TaskPostController implements Controller {
 
     const { title, description, createdBy } = httpRequest.body;
 
-    const account = await db.task.create({
-      title, description, createdBy
+    const task = await db.task.create({
+      title, 
+      description, 
+      createdBy,
+      status: 1
     });
 
-    return ok(account);
+    return ok(task);
   }
 }

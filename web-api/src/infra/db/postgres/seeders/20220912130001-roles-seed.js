@@ -14,32 +14,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        role: 'Gerente A',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role: 'Gerente B',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role: 'Gerente C',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role: 'Usuario A',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role: 'Usuario B',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role: 'Usuario C',
+        role: 'Usuario',
         createdAt: new Date(),
         updatedAt: new Date()
       }
