@@ -8,7 +8,7 @@ import { ITask } from "./task.model";
   providedIn: "root",
 })
 export class TaskService {
-  baseUrl = "http://localhost:3000/tasks";
+  baseUrl = "http://localhost:3027/tasks";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 

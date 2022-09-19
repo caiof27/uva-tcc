@@ -1,10 +1,12 @@
 export interface ITask {
   id?: number;
   title: string;
-  priority: string;
+  priority?: string;
   description: string;
   status: string;
   createdBy: number;
-  assignTo: number;
-  finishedAt: Date;
+  assignTo?: number;
+  finishedAt?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

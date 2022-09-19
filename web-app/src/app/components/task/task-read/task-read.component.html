@@ -38,13 +38,10 @@
 
     <!-- Action Column -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <th mat-header-cell *matHeaderCellDef>Visualizar</th>
       <td mat-cell *matCellDef="let row">
         <a routerLink="/tasks/update/{{row.id}}" class="edit">
           <i class="material-icons">edit</i>
-        </a>
-        <a routerLink="/tasks/delete/{{row.id}}" class="delete">
-          <i class="material-icons">delete</i>
         </a>
       </td>
     </ng-container>

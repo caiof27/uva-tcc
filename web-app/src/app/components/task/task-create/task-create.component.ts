@@ -11,12 +11,9 @@ import { TaskService } from "../task.service";
 export class TaskCreateComponent implements OnInit {
   task: ITask = {
     title: "",
-    priority: "",
     description: "",
     status: "",
-    createdBy: 0,
-    assignTo: 0,
-    finishedAt: new Date(),
+    createdBy: 2,
   };
   constructor(private taskService: TaskService, private router: Router) {}
 
@@ -25,11 +22,11 @@ export class TaskCreateComponent implements OnInit {
   createTask(): void {
     this.taskService.create(this.task).subscribe(() => {
       this.taskService.showMessage("Chamado Criado");
-      this.router.navigate(["/task"]);
+      this.router.navigate(["/tasks"]);
     });
   }
 
   cancel(): void {
-    this.router.navigate(["/task"]);
+    this.router.navigate(["/tasks"]);
   }
 }

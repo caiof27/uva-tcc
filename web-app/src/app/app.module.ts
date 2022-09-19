@@ -28,6 +28,8 @@ import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
 import { TaskUpdateComponent } from './components/task/task-update/task-update.component';
 import { TaskDeleteComponent } from './components/task/task-delete/task-delete.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 registerLocaleData(localePt);
 
@@ -61,6 +63,7 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDatepickerModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt_BR" }],
   bootstrap: [AppComponent],

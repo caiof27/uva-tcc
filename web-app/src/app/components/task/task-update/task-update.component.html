@@ -2,11 +2,37 @@
     <mat-card-title>Alterar Produto</mat-card-title>
     <form>
       <mat-form-field>
+        <input matInput placeholder="ID" [(ngModel)]="task.id" name="id" />
+      </mat-form-field>
+      <mat-form-field>
         <input matInput placeholder="Titulo" [(ngModel)]="task.title" name="title" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Prioridade" [(ngModel)]="task.priority" name="priority" />
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Descrição" [(ngModel)]="task.description" name="description" />
       </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Status" [(ngModel)]="task.status" name="status" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Criado Por" [(ngModel)]="task.createdBy" name="createdBy" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Atribuido À" [(ngModel)]="task.assignTo" name="assignTo" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Finalizado em" [(ngModel)]="task.finishedAt" name="finishedAt" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Criado em" [(ngModel)]="task.createdAt" name="createdAt" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Atualizado pelo ultima vez em" [(ngModel)]="task.updatedAt" name="updatedAt" />
+      </mat-form-field>
+      
+
     </form>
     <button mat-raised-button (click)="updateTask()" color="accent">
       Atualizar
