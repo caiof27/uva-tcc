@@ -2,12 +2,15 @@ import { badRequest, ok } from "../../helpers/http-helper";
 
 import { MissingParamError } from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
+import { UserPost } from "../../../domain/usecases/user/user-post";
 
 export class UserPostController implements Controller {
-  constructor() {}
+  private readonly userPost: UserPost;
+  constructor(userPost: UserPost) {
+    this.userPost = userPost;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const requireFields = ["name", "price"];
+    const requireFields = ["name", "role_id","username","password"];
 
     for (const field of requireFields) {
       if (!httpRequest.body[field]) {
@@ -15,11 +18,14 @@ export class UserPostController implements Controller {
       }
     }
 
-    const { name, price } = httpRequest.body;
+    const { name, role_id, username, password } = httpRequest.body;
 
-    const user = await db.user.create({
+
+    const user = await this.userPost.post({
       name,
-      price,
+      role_id,
+      username,
+      password
     });
 
     return ok(user);

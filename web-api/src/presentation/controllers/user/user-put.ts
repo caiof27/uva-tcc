@@ -2,11 +2,14 @@ import { badRequest, ok } from "../../helpers/http-helper";
 
 import { MissingParamError} from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
+import { UserPut } from "../../../domain/usecases/user/user-put";
 
 export class UserPutController implements Controller {
-  constructor() {}
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+  private readonly userPut: UserPut;
+  constructor(userPut: UserPut) {
+    this.userPut = userPut;
+  }
+  async handle(httpRequest: HttpRequest): Promise<any> {
     const requireFields = ["name", "price"];
 
     for (const field of requireFields) {
@@ -17,18 +20,12 @@ export class UserPutController implements Controller {
 
     const id = httpRequest.params["id"];
 
-    const { name, price } = httpRequest.body;
+    let user = httpRequest.body;
 
-    await db.user.update(
-      {
-        name,
-        price,
-      },
-      { where: { id } }
+    await this.userPut.put(
+      user,
+      id
     );
 
-    const user = await db.user.findOne({ where: { id } });
-
-    return ok(user);
   }
 }

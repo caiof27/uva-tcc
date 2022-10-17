@@ -1,10 +1,10 @@
 'use strict';
 import { Model }from 'sequelize';
-import { IRole } from '../../../../domain/models/role'
+import { RoleModel } from '../../../../domain/models/role'
 
 
 module.exports = (sequelize: any, DataTypes: any) => {
-  class role extends Model<IRole> implements IRole {
+  class role extends Model<RoleModel> implements RoleModel {
     id!: number;
     role!: string;
     static associate(models: any) {

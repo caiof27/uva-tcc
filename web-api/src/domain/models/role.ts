@@ -1,5 +1,5 @@
 
-export interface IRole {
+export interface RoleModel {
     id: number;
     role: string;
   }

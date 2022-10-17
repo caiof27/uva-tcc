@@ -1,9 +1,9 @@
 'use strict';
 import { Model }from 'sequelize';
-import { ITask } from '../../../../domain/models/task'
+import { TaskModel } from '../../../../domain/models/task'
 
 module.exports = (sequelize: any, DataTypes:  any) => {
-  class task extends Model<ITask> implements ITask {
+  class task extends Model<TaskModel> implements TaskModel {
     id!: number;
     title!: string;
     priority!: string;

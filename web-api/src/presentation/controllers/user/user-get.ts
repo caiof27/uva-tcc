@@ -1,11 +1,15 @@
 import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import db from "../../../infra/db/postgres/models";
+import { UserGetAll } from "../../../domain/usecases/user/user-getAll";
 
 export class UserGetController implements Controller {
-  constructor() {}
+  private readonly userGetAll: UserGetAll;
+  constructor(userGetAll: UserGetAll) {
+    this.userGetAll = userGetAll;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-      const user = await db.user.findAll({ order: [["id", "ASC"]] });
+      const user = await this.userGetAll.getAll();
 
       return ok(user);
   }

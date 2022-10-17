@@ -1,14 +1,18 @@
 import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import db from "../../../infra/db/postgres/models";
+import { UserDelete } from "../../../domain/usecases/user/user-delete";
 
 export class UserDeleteController implements Controller {
-  constructor() {}
+  private readonly userDelete: UserDelete;
+  constructor(userDelete: UserDelete) {
+    this.userDelete = userDelete;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 
     const id = httpRequest.params["id"];
 
-    const user = await db.user.destroy({ where: { id } });
+    const user = await this.userDelete.delete(id);
 
     return ok(user);
   }

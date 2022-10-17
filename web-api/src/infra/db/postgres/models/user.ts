@@ -1,13 +1,15 @@
 'use strict';
 import { Model } from 'sequelize';
-import { IUser } from '../../../../domain/models/user'
+import { UserModel } from '../../../../domain/models/user'
 
 
 module.exports = (sequelize: any, DataTypes:any ) => {
-  class user extends Model<IUser> implements IUser {
+  class user extends Model<UserModel> implements UserModel {
     id!: number;
     name!: string;
     role_id!: string;
+    username!: string;
+    password!: string;
     static associate(models: any) {
     }
   }
@@ -22,6 +24,12 @@ module.exports = (sequelize: any, DataTypes:any ) => {
       type: DataTypes.STRING, allowNull: false 
     },
     role_id: { 
+      type: DataTypes.STRING, allowNull: false 
+    },
+    username: { 
+      type: DataTypes.STRING, allowNull: false 
+    },
+   password: { 
       type: DataTypes.STRING, allowNull: false 
     },
   }, {
