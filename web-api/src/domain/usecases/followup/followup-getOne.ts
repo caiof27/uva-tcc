@@ -1,5 +1,5 @@
-import { TaskModel } from "../../models/task";
+import { FollowUpModel } from "../../models/followup";
 
-export interface TaskGetOne{
-    getOne(task:TaskModel):Promise<TaskModel>
+export interface FollowUpGetOne{
+    getOne(id:number):Promise<FollowUpModel>
 }

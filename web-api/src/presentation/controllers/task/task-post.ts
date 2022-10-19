@@ -1,12 +1,14 @@
 import { badRequest, ok } from "../../helpers/http-helper";
 
 import { MissingParamError } from "../../errors/index";
-import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
-
+import { Controller, HttpRequest } from "../../protocols";
+import { TaskPost } from "../../../domain/usecases/task/task-post";
 export class TaskPostController implements Controller {
-  constructor() {}
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+  private readonly taskPost: TaskPost;
+  constructor(taskPost: TaskPost) {
+    this.taskPost = taskPost;
+  }
+  async handle(httpRequest: HttpRequest): Promise<any> {
     const requireFields = ["title", "description","createdBy"];
 
     for (const field of requireFields) {
@@ -17,7 +19,7 @@ export class TaskPostController implements Controller {
 
     const { title, description, createdBy } = httpRequest.body;
 
-    const task = await db.task.create({
+    const task = await this.taskPost.post({
       title, 
       description, 
       createdBy,

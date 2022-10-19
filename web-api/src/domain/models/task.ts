@@ -1,10 +1,10 @@
 export interface TaskModel {
-    id: number;
+    id?: number;
     title: string;
-    priority: string;
+    priority?: string;
     description: string;
-    status: string;
+    status: number;
     createdBy: number;
-    assignTo: number;
-    finishedAt: Date;
+    assignTo?: number;
+    finishedAt?: Date;
   }

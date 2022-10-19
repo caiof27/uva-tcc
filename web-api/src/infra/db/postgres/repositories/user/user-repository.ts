@@ -6,8 +6,8 @@ export class UserRepository implements UserPostRepository,UserDeleteRepository,U
     async getOne(id: number): Promise<UserModel> {
         return db.user.findOne({where:{id}})
     }
-    async put(user: UserModel): Promise<void> {
-        await db.user.update({where:{id:user.id}})
+    async put(user: UserModel,userId:number): Promise<void> {
+        await db.user.update(user,{where:{id:userId}})
     }
     async getAll(): Promise<UserModel[]> {
         return await db.user.findAll();

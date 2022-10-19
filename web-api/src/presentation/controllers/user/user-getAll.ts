@@ -1,6 +1,5 @@
 import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
 import { UserGetAll } from "../../../domain/usecases/user/user-getAll";
 
 export class UserGetController implements Controller {

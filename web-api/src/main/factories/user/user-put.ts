@@ -7,6 +7,6 @@ import { Controller } from "../../../presentation/protocols";
 export const makeUserPutController = (): Controller =>{
     const bcryptAdapter = new BcryptAdapter();
     const userRepository = new UserRepository();
-    const dbUserPost = new DbUserPut(bcryptAdapter,userRepository);
-    return new UserPutController(dbUserPost);
+    const dbUserPut = new DbUserPut(bcryptAdapter,userRepository);
+    return new UserPutController(dbUserPut);
 }

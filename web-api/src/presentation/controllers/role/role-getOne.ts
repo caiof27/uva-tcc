@@ -1,13 +1,17 @@
+import { RoleGetOne } from "../../../domain/usecases/role/role-getOne";
 import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
 
 export class RoleGetOneController implements Controller {
-  constructor() {}
+  private readonly roleGetOne: RoleGetOne;
+
+  constructor(roleGetOne: RoleGetOne) {
+    this.roleGetOne = roleGetOne;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const id = httpRequest.params["id"];
 
-    const role = await db.role.findOne({ where: { id } });
+    const role = await this.roleGetOne.getOne(id);
 
     return ok(role);
   }

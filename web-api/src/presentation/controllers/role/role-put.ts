@@ -1,34 +1,17 @@
-import { badRequest, ok } from "../../helpers/http-helper";
-
-import { MissingParamError} from "../../errors/index";
-import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
-
+import { Controller, HttpRequest,  } from "../../protocols";
+import { RolePut } from "../../../domain/usecases/role/role-put";
 export class RolePutController implements Controller {
-  constructor() {}
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const requireFields = ["name", "price"];
-
-    for (const field of requireFields) {
-      if (!httpRequest.body[field]) {
-        return badRequest(new MissingParamError(field));
-      }
-    }
+  private readonly rolePut: RolePut;
+  constructor(rolePut: RolePut) {
+    this.rolePut = rolePut;
+  }
+  async handle(httpRequest: HttpRequest): Promise<any> {
 
     const id = httpRequest.params["id"];
 
-    const { name, price } = httpRequest.body;
+    const body = httpRequest.body;
 
-    await db.role.update(
-      {
-        name,
-        price,
-      },
-      { where: { id } }
-    );
+    await this.rolePut.put(body,id);
 
-    const role = await db.role.findOne({ where: { id } });
-
-    return ok(role);
   }
 }

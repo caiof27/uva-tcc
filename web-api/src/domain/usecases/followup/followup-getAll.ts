@@ -1,5 +1,5 @@
-import { TaskModel } from "../../models/task";
+import { FollowUpModel } from "../../models/followup";
 
-export interface TaskGetAll{
-    getAll(task:TaskModel):Promise<TaskModel[]>
+export interface FollowUpGetAll{
+    getAll():Promise<FollowUpModel[]>
 }

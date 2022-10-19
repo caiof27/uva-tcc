@@ -2,12 +2,15 @@ import { badRequest, ok } from "../../helpers/http-helper";
 
 import { MissingParamError } from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
+import { RolePost } from "../../../domain/usecases/role/role-post";
 
 export class RolePostController implements Controller {
-  constructor() {}
+  private readonly rolePost: RolePost;
+  constructor(rolePost: RolePost) {
+    this.rolePost = rolePost;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const requireFields = ["name", "price"];
+    const requireFields = ["role"];
 
     for (const field of requireFields) {
       if (!httpRequest.body[field]) {
@@ -15,12 +18,9 @@ export class RolePostController implements Controller {
       }
     }
 
-    const { name, price } = httpRequest.body;
+    const body = httpRequest.body;
 
-    const role = await db.role.create({
-      name,
-      price,
-    });
+    const role = await this.rolePost.post(body);
 
     return ok(role);
   }

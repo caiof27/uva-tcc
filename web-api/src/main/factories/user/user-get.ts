@@ -1,6 +1,6 @@
 import { DbUserGetall } from "../../../data/usecases/user/user-getAll";
 import { UserRepository } from "../../../infra/db/postgres/repositories/user/user-repository";
-import { UserGetController } from "../../../presentation/controllers/user/user-get";
+import { UserGetController } from "../../../presentation/controllers/user/user-getAll";
 import { Controller } from "../../../presentation/protocols";
 
 export const makeUserGetController = (): Controller =>{

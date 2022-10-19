@@ -1,6 +1,5 @@
 import { ok } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
 import { UserDelete } from "../../../domain/usecases/user/user-delete";
 
 export class UserDeleteController implements Controller {

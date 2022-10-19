@@ -1,5 +1,5 @@
 import { RoleModel } from "../../models/role";
 
-export interface TaskPost{
-    put(task: RoleModel): Promise<RoleModel>
+export interface RolePut{
+    put(role: RoleModel,roleId:number): Promise<void>
 }

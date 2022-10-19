@@ -1,0 +1,5 @@
+export * from "./role-delete-repository"
+export * from "./role-getAll-repository"
+export * from "./role-getOne-repository"
+export * from "./role-post-repository"
+export * from "./role-put-repository"

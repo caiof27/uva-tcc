@@ -2,12 +2,15 @@ import { badRequest, ok } from "../../helpers/http-helper";
 
 import { MissingParamError } from "../../errors/index";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import db from "../../../infra/db/postgres/models";
+import { FollowUpPost } from "../../../domain/usecases/followup/followup-post";
 
 export class FollowUpPostController implements Controller {
-  constructor() {}
+  private readonly followUpPost: FollowUpPost;
+  constructor(followUpPost: FollowUpPost) {
+    this.followUpPost = followUpPost;
+  }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const requireFields = ["name", "price"];
+    const requireFields = ["description", "task_id"];
 
     for (const field of requireFields) {
       if (!httpRequest.body[field]) {
@@ -15,13 +18,10 @@ export class FollowUpPostController implements Controller {
       }
     }
 
-    const { name, price } = httpRequest.body;
+    const body = httpRequest.body;
 
-    const attachment = await db.attachment.create({
-      name,
-      price,
-    });
+    const followup = await this.followUpPost.post(body);
 
-    return ok(attachment);
+    return ok(followup);
   }
 }
