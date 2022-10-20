@@ -1,5 +1,5 @@
 
 export interface RoleModel {
-    id: number;
+    id?: number;
     role: string;
   }

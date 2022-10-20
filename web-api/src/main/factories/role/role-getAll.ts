@@ -3,7 +3,7 @@ import { RoleRepository } from "../../../infra/db/postgres/repositories/role/rol
 import { RoleGetAllController } from "../../../presentation/controllers/role/role-getAll";
 import { Controller } from "../../../presentation/protocols";
 
-export const makeRoleGetController = (): Controller =>{
+export const makeRoleGetAllController = (): Controller =>{
     const roleRepository = new RoleRepository();
     const dbRoleGetAll = new DbRoleGetall(roleRepository)
     return new RoleGetAllController(dbRoleGetAll);

@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = 'FollowUp_task_id';
+const tableName = 'followup';
 const schema = 'public'
 
 module.exports = {

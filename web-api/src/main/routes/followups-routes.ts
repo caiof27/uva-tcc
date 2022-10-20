@@ -7,7 +7,7 @@ import { makeFollowUpPostController } from "../factories/followup/followup-post"
 
 
 export default (router: Router): void => {
-  router.post("/followup/create",adaptRoute(makeFollowUpPostController()));
-  router.get("/followup",adaptRoute(makeFollowUpGetAllController()));
-  router.get("/followup/:id",adaptRoute(makeFollowUpGetOneController()));
+  router.post("/followups/create",adaptRoute(makeFollowUpPostController()));
+  router.get("/followups",adaptRoute(makeFollowUpGetAllController()));
+  router.get("/followups/:id",adaptRoute(makeFollowUpGetOneController()));
 };

@@ -1,3 +1,4 @@
+import { DbUserGetOne } from "../../../data/usecases/user/user-getOne";
 import { DbUserPut } from "../../../data/usecases/user/user-put";
 import { BcryptAdapter } from "../../../infra/criptography/bcrypt-adapter";
 import { UserRepository } from "../../../infra/db/postgres/repositories/user/user-repository";
@@ -8,5 +9,6 @@ export const makeUserPutController = (): Controller =>{
     const bcryptAdapter = new BcryptAdapter();
     const userRepository = new UserRepository();
     const dbUserPut = new DbUserPut(bcryptAdapter,userRepository);
-    return new UserPutController(dbUserPut);
+    const dbuserGetOne = new DbUserGetOne(userRepository);
+    return new UserPutController(dbUserPut,dbuserGetOne);
 }

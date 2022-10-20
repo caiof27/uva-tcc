@@ -1,5 +1,5 @@
 export interface FollowUpModel {
-    id: number;
+    id?: number;
     description: string;
     task_id: number;
 }
