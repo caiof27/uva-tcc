@@ -11,6 +11,9 @@ module.exports = {
       role: {
         type: Sequelize.STRING
       },
+      dependency: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

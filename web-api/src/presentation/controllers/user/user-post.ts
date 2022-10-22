@@ -20,7 +20,6 @@ export class UserPostController implements Controller {
 
     const { name, role_id, username, password } = httpRequest.body;
 
-
     const user = await this.userPost.post({
       name,
       role_id,

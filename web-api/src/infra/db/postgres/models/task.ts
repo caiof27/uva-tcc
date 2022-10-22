@@ -8,7 +8,7 @@ module.exports = (sequelize: any, DataTypes:  any) => {
     title!: string;
     priority!: string;
     description!: string;
-    status!: string;
+    status!: number;
     createdBy!: number;
     assignTo!: number;
     finishedAt!: Date;
@@ -33,7 +33,7 @@ module.exports = (sequelize: any, DataTypes:  any) => {
       type: DataTypes.STRING, allowNull: false 
     },
     status:{
-      type: DataTypes.STRING, allowNull: false 
+      type: DataTypes.INTEGER, allowNull: false 
     },
     createdBy:{
       type: DataTypes.INTEGER, allowNull: false 

@@ -1,13 +1,13 @@
-import { FollowUpGetAllRepository,FollowUpGetOneRepository,FollowUpPostRepository } from "../../../../../data/protocols/followup";
+import { FollowUpGetAllFromOneRepository,FollowUpGetOneRepository,FollowUpPostRepository } from "../../../../../data/protocols/followup";
 import { FollowUpModel } from "../../../../../domain/models/followup";
 import db from "../../models";
 
-export class FollowUpRepository implements FollowUpGetAllRepository,FollowUpGetOneRepository,FollowUpPostRepository {
+export class FollowUpRepository implements FollowUpGetAllFromOneRepository,FollowUpGetOneRepository,FollowUpPostRepository {
     async getOne(id: number): Promise<FollowUpModel> {
         return db.followup.findOne({where:{id}})
     }
-    async getAll(): Promise<FollowUpModel[]> {
-        return await db.followup.findAll();
+    async getAllFromOne(task_id:number): Promise<FollowUpModel[]> {
+        return await db.followup.find({where:{task_id}});
     }
     async post(followup: FollowUpModel): Promise<FollowUpModel>{
         const result = await db.followup.create(followup)

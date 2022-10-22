@@ -10,5 +10,5 @@ export default (router: Router): void => {
   router.post("/tasks/create",adaptRoute(makeTaskPostController()));
   router.get("/tasks",adaptRoute(makeTaskGetController()));
   router.get("/tasks/:id",adaptRoute(makeTaskGetOneController()));
-  router.patch("/tasks/update/:id",adaptRoute(makeTaskPutController()));
+  router.put("/tasks/update/:id",adaptRoute(makeTaskPutController()));
 };
