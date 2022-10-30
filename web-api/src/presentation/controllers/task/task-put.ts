@@ -12,7 +12,8 @@ export class TaskPutController implements Controller {
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 
-    const id = httpRequest.params["id"];
+    const id = httpRequest.params["idTask"];
+    const token = httpRequest.params["token"];
 
     const body = httpRequest.body;
 
@@ -20,7 +21,7 @@ export class TaskPutController implements Controller {
 
     const task = await this.taskGetOne.getOne(id);
 
-    return ok(task)
+    return ok({task,token})
 
   }
 }

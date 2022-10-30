@@ -19,6 +19,7 @@ export class UserPostController implements Controller {
     }
 
     const { name, role_id, username, password } = httpRequest.body;
+    const token = httpRequest.params["token"];
 
     const user = await this.userPost.post({
       name,
@@ -27,6 +28,6 @@ export class UserPostController implements Controller {
       password
     });
 
-    return ok(user);
+    return ok({user,token});
   }
 }

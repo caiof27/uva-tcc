@@ -1,8 +1,8 @@
-import { UserPostRepository,UserDeleteRepository,UserGetAllRepository,UserGetOneRepository,UserPutRepository } from "../../../../../data/protocols/user";
+import { UserPostRepository,UserDeleteRepository,UserGetAllRepository,UserGetOneRepository,UserPutRepository, UserLoginRepository } from "../../../../../data/protocols/user";
 import { UserModel } from "../../../../../domain/models/user";
 import db from "../../models";
 
-export class UserRepository implements UserPostRepository,UserDeleteRepository,UserGetAllRepository,UserGetOneRepository,UserPutRepository {
+export class UserRepository implements UserPostRepository,UserDeleteRepository,UserGetAllRepository,UserGetOneRepository,UserPutRepository,UserLoginRepository {
     async getOne(id: number): Promise<UserModel> {
         return db.user.findOne({where:{id}})
     }
@@ -17,6 +17,10 @@ export class UserRepository implements UserPostRepository,UserDeleteRepository,U
     }
     async post(user: UserModel): Promise<UserModel>{
         const result = await db.user.create(user)
+        return result;
+    }
+    async login(username: string): Promise<UserModel>{
+        const result = await db.user.findOne({where:{username}});
         return result;
     }
 }

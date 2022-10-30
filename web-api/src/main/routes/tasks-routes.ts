@@ -7,8 +7,8 @@ import { makeTaskPutController } from "../factories/task/task-put";
 
 
 export default (router: Router): void => {
-  router.post("/tasks/create",adaptRoute(makeTaskPostController()));
-  router.get("/tasks",adaptRoute(makeTaskGetController()));
-  router.get("/tasks/:id",adaptRoute(makeTaskGetOneController()));
-  router.put("/tasks/update/:id",adaptRoute(makeTaskPutController()));
+  router.post("/:token/tasks/create",adaptRoute(makeTaskPostController()));
+  router.get("/:token/tasks",adaptRoute(makeTaskGetController()));
+  router.get("/:token/tasks/:idTask",adaptRoute(makeTaskGetOneController()));
+  router.put("/:token/tasks/update/:idTask",adaptRoute(makeTaskPutController()));
 };

@@ -19,9 +19,11 @@ export class RolePostController implements Controller {
     }
 
     const body = httpRequest.body;
+    const token = httpRequest.params["token"];
+
 
     const role = await this.rolePost.post(body);
 
-    return ok(role);
+    return ok({role,token});
   }
 }

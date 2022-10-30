@@ -7,7 +7,7 @@ module.exports = (sequelize: any, DataTypes:any ) => {
   class user extends Model<UserModel> implements UserModel {
     id!: number;
     name!: string;
-    role_id!: string;
+    role_id!: number;
     username!: string;
     password!: string;
     static associate(models: any) {
@@ -24,7 +24,7 @@ module.exports = (sequelize: any, DataTypes:any ) => {
       type: DataTypes.STRING, allowNull: false 
     },
     role_id: { 
-      type: DataTypes.STRING, allowNull: false 
+      type: DataTypes.INTEGER, allowNull: false 
     },
     username: { 
       type: DataTypes.STRING, allowNull: false 

@@ -8,8 +8,12 @@ export class  FollowUpGetAllController implements Controller {
     this.followUpGetAll = followUpGetAll;
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-      const  followup = await this.followUpGetAll.getAll();
 
-      return ok(followup);
+    const token = httpRequest.params["token"];
+    const id = httpRequest.params["id"];
+
+    const followup = await this.followUpGetAll.getAllFromOne(id);
+
+    return ok({followup,token});
   }
 }

@@ -8,8 +8,10 @@ export class RoleGetAllController implements Controller {
     this.roleGetAll = roleGetAll;
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+      const token = httpRequest.params["token"];
+
       const role = await this.roleGetAll.getAll();
 
-      return ok(role);
+      return ok({role,token});
   }
 }

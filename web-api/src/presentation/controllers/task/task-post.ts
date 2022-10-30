@@ -3,13 +3,16 @@ import { badRequest, ok } from "../../helpers/http-helper";
 import { MissingParamError } from "../../errors/index";
 import { Controller, HttpRequest } from "../../protocols";
 import { TaskPost } from "../../../domain/usecases/task/task-post";
+import { token } from "../../../data/protocols/jwt";
 export class TaskPostController implements Controller {
   private readonly taskPost: TaskPost;
-  constructor(taskPost: TaskPost) {
+  private readonly jwt: token;
+  constructor(taskPost: TaskPost,jwt:token) {
     this.taskPost = taskPost;
+    this.jwt = jwt;
   }
   async handle(httpRequest: HttpRequest): Promise<any> {
-    const requireFields = ["title", "description","createdBy"];
+    const requireFields = ["title", "description"];
 
     for (const field of requireFields) {
       if (!httpRequest.body[field]) {
@@ -17,15 +20,19 @@ export class TaskPostController implements Controller {
       }
     }
 
-    const { title, description, createdBy } = httpRequest.body;
+    const { title, description } = httpRequest.body;
+    const token = httpRequest.params["token"];
+
+    const {id} = this.jwt.decode(token);
+
 
     const task = await this.taskPost.post({
       title, 
       description, 
-      createdBy,
+      createdBy:id,
       status: 1
     });
 
-    return ok(task);
+    return ok({task,token});
   }
 }

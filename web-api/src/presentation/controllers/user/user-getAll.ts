@@ -8,8 +8,10 @@ export class UserGetController implements Controller {
     this.userGetAll = userGetAll;
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-      const user = await this.userGetAll.getAll();
+    const token = httpRequest.params["token"];
 
-      return ok(user);
+    const user = await this.userGetAll.getAll();
+
+    return ok({user,token});
   }
 }

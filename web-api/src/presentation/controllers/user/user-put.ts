@@ -13,6 +13,7 @@ export class UserPutController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 
     const id = httpRequest.params["id"];
+    const token = httpRequest.params["token"];
 
     const body = httpRequest.body;
 
@@ -23,6 +24,6 @@ export class UserPutController implements Controller {
 
     const user = await this.userGetOne.getOne(id);
 
-    return ok(user)
+    return ok({user,token})
   }
 }

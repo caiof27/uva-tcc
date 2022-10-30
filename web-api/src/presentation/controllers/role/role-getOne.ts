@@ -10,9 +10,10 @@ export class RoleGetOneController implements Controller {
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const id = httpRequest.params["id"];
+    const token = httpRequest.params["token"];
 
     const role = await this.roleGetOne.getOne(id);
 
-    return ok(role);
+    return ok({role,token});
   }
 }

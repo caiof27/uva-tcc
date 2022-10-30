@@ -7,10 +7,10 @@ export class FollowUpRepository implements FollowUpGetAllFromOneRepository,Follo
         return db.followup.findOne({where:{id}})
     }
     async getAllFromOne(task_id:number): Promise<FollowUpModel[]> {
-        return await db.followup.find({where:{task_id}});
+        return await db.followup.findAll({where:{task_id}});
     }
     async post(followup: FollowUpModel): Promise<FollowUpModel>{
-        const result = await db.followup.create(followup)
-        return result;
+        return await db.followup.create(followup)
+        
     }
 }
