@@ -8,11 +8,11 @@ export class  FollowUpGetOneController implements Controller {
     this.followUpGetOne = followUpGetOne;
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const id = httpRequest.params["id"];
+    const id  = httpRequest.params["id"];
     const token = httpRequest.params["token"];
 
-    const followup = await this.followUpGetOne.getOne(id);
+    const followups = await this.followUpGetOne.getOne(id);
 
-    return ok({followup,token});
+    return ok({followups,token});
   }
 }

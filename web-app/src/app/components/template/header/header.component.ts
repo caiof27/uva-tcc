@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { HeaderService } from "./header.service";
 
 @Component({
@@ -7,7 +8,7 @@ import { HeaderService } from "./header.service";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private headerService: HeaderService) {}
+  constructor(private headerService: HeaderService,private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -21,5 +22,9 @@ export class HeaderComponent implements OnInit {
 
   get routeUrl(): string {
     return this.headerService.headerData.routeUrl;
+  }
+
+  login():void{
+    this.router.navigate(["/login"]);
   }
 }

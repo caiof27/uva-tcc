@@ -1,0 +1,37 @@
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+  <mat-card *ngIf="task">
+    <mat-card-title >
+      <strong>ID:</strong> {{task.id}}
+      <strong>Titulo:</strong> {{task.title}}
+      <button mat-raised-button *ngIf="hasTechnicalAcess" (click)="assignToMe()">Atribuir para mim</button>
+
+      <button mat-raised-button *ngIf="hasTechnicalAcess" (click)="cancelTask()">Cancelar</button>
+
+      <button mat-raised-button (click)="followUp()">Acompanhamento</button>
+    </mat-card-title>
+
+      
+      
+      <mat-grid-list cols="12" rowHeight="50px">
+        <mat-grid-tile
+          *ngFor="let tile of tiles"
+          [colspan]="tile.cols"
+          
+        >
+        <div *ngIf="tile.cols == 4">
+          <strong>{{tile.label}}</strong> {{tile.value | date}} 
+        </div>
+        <div *ngIf="tile.cols != 4">
+          <strong>{{tile.label}}</strong> {{tile.value}}
+        </div>
+        
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    <button mat-raised-button (click)="back()">Voltar</button>
+
+    
+
+  </mat-card>
+</mat-card-content>

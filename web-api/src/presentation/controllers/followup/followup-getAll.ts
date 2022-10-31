@@ -12,8 +12,9 @@ export class  FollowUpGetAllController implements Controller {
     const token = httpRequest.params["token"];
     const id = httpRequest.params["id"];
 
-    const followup = await this.followUpGetAll.getAllFromOne(id);
 
-    return ok({followup,token});
+    const followups = await this.followUpGetAll.getAllFromOne(id);
+
+    return ok({followups,token});
   }
 }

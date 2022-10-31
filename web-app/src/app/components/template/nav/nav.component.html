@@ -7,15 +7,19 @@
     fixedTopGap="64"
   >
     <mat-nav-list class="nav-list">
-      <a mat-list-item routerLink="/"
+      <a mat-list-item routerLink="/{{token}}/"
         ><i class="material-icons">home</i>Inicio</a
       >
-      <a mat-list-item routerLink="/tasks"
+      <a mat-list-item routerLink="/{{token}}/tasks"
         ><i class="material-icons">storefront</i>Chamados</a
+      >
+      <a mat-list-item routerLink="/{{token}}/users"
+        ><i class="material-icons">people</i>Usuarios</a
+      >
+      <a mat-list-item routerLink="/{{token}}/roles"
+        ><i class="material-icons">attribution</i>Cargos</a
       >
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <router-outlet> </router-outlet>
-  </mat-sidenav-content>
+  
 </mat-sidenav-container>

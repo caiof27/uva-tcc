@@ -24,8 +24,8 @@ export class FollowUpPostController implements Controller {
     const token = httpRequest.params["token"];
     const id = httpRequest.params["id"];
 
-    const followup = await this.followUpPost.post(Object.assign(body,{task_id:id}));
+    const followups = await this.followUpPost.post(Object.assign(body,{task_id:id}));
 
-    return ok({followup,token});
+    return ok({followups,token});
   }
 }

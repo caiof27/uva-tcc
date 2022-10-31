@@ -9,6 +9,9 @@ export class TaskRepository implements TaskGetAllRepository,TaskGetOneRepository
     async getAll(): Promise<TaskModel[]> {
         return await db.task.findAll();
     }
+    async put(task: TaskModel,taskId:number): Promise<void> {
+        await db.task.update(task,{where:{id:taskId}})
+    }
     async post(user: TaskModel): Promise<TaskModel>{
         const result = await db.task.create(user)
         return result;

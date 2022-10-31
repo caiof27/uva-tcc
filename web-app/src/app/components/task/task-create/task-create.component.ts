@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ITask } from "../task.model";
+import { TaskModel } from "../task.model";
 import { TaskService } from "../task.service";
 
 @Component({
@@ -9,24 +9,29 @@ import { TaskService } from "../task.service";
   styleUrls: ["./task-create.component.css"],
 })
 export class TaskCreateComponent implements OnInit {
-  task: ITask = {
+
+  token: string = this.router.url.split("/")[1];
+
+  task:any = {
     title: "",
     description: "",
-    status: "",
-    createdBy: 2,
+    status: 1
   };
+
+  return_url:string = `/${this.token}/tasks`; 
   constructor(private taskService: TaskService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   createTask(): void {
-    this.taskService.create(this.task).subscribe(() => {
+    this.taskService.create(this.token,this.task).subscribe(() => {
       this.taskService.showMessage("Chamado Criado");
-      this.router.navigate(["/tasks"]);
+      this.router.navigate([this.return_url]);
     });
   }
 
   cancel(): void {
-    this.router.navigate(["/tasks"]);
+    this.router.navigate([this.return_url]);
   }
 }

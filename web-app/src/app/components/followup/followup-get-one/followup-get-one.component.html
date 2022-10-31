@@ -1,0 +1,17 @@
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+<mat-card>
+    <mat-card-title>Acompanhamento {{id}} </mat-card-title>
+    <form *ngIf="followup">
+      <mat-form-field>
+        <input matInput [(ngModel)]="followup.description" name="description" disabled/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput  [(ngModel)]="followup.task_id" name="task_id" disabled />
+      </mat-form-field>
+    </form>
+  
+    <button mat-raised-button (click)="back()">Voltar</button>
+  </mat-card>
+</mat-card-content>
+  

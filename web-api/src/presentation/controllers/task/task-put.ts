@@ -2,6 +2,7 @@ import { Controller, HttpRequest, HttpResponse } from "../../protocols";
 import { TaskPut } from "../../../domain/usecases/task/task-put";
 import { TaskGetOne } from "../../../domain/usecases/task/task-getOne";
 import { ok } from "../../helpers/http-helper";
+import { token } from "../../../data/protocols/jwt";
 
 export class TaskPutController implements Controller {
   private readonly taskPut: TaskPut;
@@ -12,14 +13,16 @@ export class TaskPutController implements Controller {
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 
-    const id = httpRequest.params["idTask"];
+    const idTask = httpRequest.params["idTask"];
     const token = httpRequest.params["token"];
 
-    const body = httpRequest.body;
+    let body = httpRequest.body;
 
-    await this.taskPut.put(body,id);
+    
 
-    const task = await this.taskGetOne.getOne(id);
+    await this.taskPut.put(body,idTask);
+
+    const task = await this.taskGetOne.getOne(idTask);
 
     return ok({task,token})
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  token:any = this.route.snapshot.paramMap.get("token");
+
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.token)
   }
 
 }
