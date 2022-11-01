@@ -13,6 +13,8 @@ export class TaskRepository implements TaskGetAllRepository,TaskGetOneRepository
         await db.task.update(task,{where:{id:taskId}})
     }
     async post(user: TaskModel): Promise<TaskModel>{
+        console.log("Infra")
+        console.log(user)
         const result = await db.task.create(user)
         return result;
     }

@@ -6,14 +6,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit{
-  
-  token:any = this.route.snapshot.paramMap.get("token");
-
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.token)
   }
 
 

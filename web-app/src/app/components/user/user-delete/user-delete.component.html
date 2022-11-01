@@ -1,1 +1,25 @@
-<p>user-delete works!</p>
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+    
+    <mat-card>
+
+        <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="users.name" name="name" disabled/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nome de Usuario" [(ngModel)]="users.username" name="username" disabled/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Senha" [(ngModel)]="users.password" name="password" disabled/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Cargo" [(ngModel)]="users.role_id" name="role_id" disabled/>
+        </mat-form-field>
+        </form>
+    </mat-card>
+    
+    <button mat-raised-button (click)="back()">Voltar</button>
+    <button mat-raised-button (click)="deleteUser()" color="primary"> Confirmar Exclusão</button>
+
+</mat-card-content>

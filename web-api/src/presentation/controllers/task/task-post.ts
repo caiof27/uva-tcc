@@ -24,14 +24,15 @@ export class TaskPostController implements Controller {
     const token = httpRequest.params["token"];
 
     const {id} = this.jwt.decode(token);
-
-
-    const task = await this.taskPost.post({
+    
+    const user = {
       title, 
       description, 
       createdBy:id,
       status: 1
-    });
+    }
+
+    const task = await this.taskPost.post(user);
 
     return ok({task,token});
   }

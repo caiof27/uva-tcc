@@ -35,9 +35,9 @@ export class UserService {
     );
   }
 
-  create(token: string,task: UserModel): Observable<any> {
+  create(token: string,users: UserModel): Observable<any> {
     const url = `${this.baseUrl}/${token}/users/create`;
-    return this.http.post<any>(url, task).pipe(
+    return this.http.post<any>(url, users).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
@@ -59,9 +59,9 @@ export class UserService {
     );
   }
 
-  update(token: string,task: UserModel): Observable<any> {
-    const url = `${this.baseUrl}/${token}/users/update/${task.id}`;
-    return this.http.put<any>(url, task).pipe(
+  update(token: string,users: UserModel,userId: number): Observable<any> {
+    const url = `${this.baseUrl}/${token}/users/update/${userId}`;
+    return this.http.put<any>(url, users).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

@@ -1,1 +1,23 @@
-<p>user-create works!</p>
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+    <mat-card>
+        <mat-card-title>Novo Usuario</mat-card-title>
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="users.name" name="name" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nome de Usuario" [(ngModel)]="users.username" name="username" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Senha" [(ngModel)]="users.password" name="password" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Cargo" [(ngModel)]="users.role_id" name="role_id" />
+          </mat-form-field>
+        </form>
+        
+        <button mat-raised-button (click)="back()">Cancelar</button>
+        <button mat-raised-button (click)="createUser()" color="primary"> Criar</button>
+    </mat-card>
+</mat-card-content>

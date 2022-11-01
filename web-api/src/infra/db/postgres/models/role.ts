@@ -7,6 +7,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   class role extends Model<RoleModel> implements RoleModel {
     id!: number;
     role!: string;
+    dependency!: number;
     static associate(models: any) {
     }
   }
@@ -20,6 +21,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
     role: { 
       type: DataTypes.STRING, allowNull: false 
     },
+    dependency:{
+      type: DataTypes.INTEGER, allowNull: true 
+    }
   }, {
     sequelize,
     modelName: 'role',

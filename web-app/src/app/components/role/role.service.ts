@@ -9,7 +9,7 @@ import { RoleModel } from './role.model';
 })
 export class RoleService {
 
-  baseUrl = "http://localhost:3027/";
+  baseUrl = "http://localhost:3027";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
@@ -27,9 +27,9 @@ export class RoleService {
     return EMPTY;
   }
 
-  create(token: string,task: RoleModel): Observable<any> {
+  create(token: string,roles: RoleModel): Observable<any> {
     const url = `${this.baseUrl}/${token}/roles/create`;
-    return this.http.post<any>(url, task).pipe(
+    return this.http.post<any>(url, roles).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
@@ -51,9 +51,9 @@ export class RoleService {
     );
   }
 
-  update(token: string,task: RoleModel): Observable<any> {
-    const url = `${this.baseUrl}/${token}/roles/update/${task.id}`;
-    return this.http.put<any>(url, task).pipe(
+  update(token: string,roles: RoleModel,role_id:number): Observable<any> {
+    const url = `${this.baseUrl}/${token}/roles/update/${role_id}`;
+    return this.http.put<any>(url, roles).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

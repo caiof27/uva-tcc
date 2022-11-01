@@ -1,1 +1,16 @@
-<p>role-update works!</p>
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+    <mat-card>
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Cargo" [(ngModel)]="roles.role" name="role" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Dependencia" [(ngModel)]="roles.dependency" name="dependency" />
+          </mat-form-field>
+        </form>
+        
+        <button mat-raised-button (click)="back()">Cancelar</button>
+        <button mat-raised-button (click)="updateRole()" color="primary"> Atualizar</button>
+    </mat-card>
+</mat-card-content>

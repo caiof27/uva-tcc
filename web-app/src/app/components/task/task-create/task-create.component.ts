@@ -14,8 +14,7 @@ export class TaskCreateComponent implements OnInit {
 
   task:any = {
     title: "",
-    description: "",
-    status: 1
+    description: ""
   };
 
   return_url:string = `/${this.token}/tasks`; 

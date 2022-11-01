@@ -1,1 +1,21 @@
-<p>role-read-one works!</p>
+<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+<mat-card-content>
+    <mat-card>
+        
+        <mat-card-title>
+            <button mat-raised-button (click)="editRole()" color="primary"> Editar</button>
+        </mat-card-title>
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Cargo" [(ngModel)]="roles.role" name="role" disabled/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Dependencia" [(ngModel)]="roles.dependency" name="dependency" disabled/>
+          </mat-form-field>
+        </form>
+        
+      
+        <button mat-raised-button (click)="back()">Voltar</button>
+        
+      </mat-card>
+</mat-card-content>

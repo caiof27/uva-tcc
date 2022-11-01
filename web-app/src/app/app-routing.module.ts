@@ -41,7 +41,7 @@ const routes: Routes = [
     component: RoleReadAllComponent,
   },
   {
-    path: ":token/roles/:id",
+    path: ":token/roles/read/:id",
     component: RoleReadOneComponent,
   },
   {
@@ -70,7 +70,7 @@ const routes: Routes = [
   },
   {
     path: ":token/users/:id",
-    component: UserLoginComponent,
+    component: UserReadOneComponent,
   },
   {
     path: ":token/users/update/:id",
