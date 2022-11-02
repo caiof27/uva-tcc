@@ -22,7 +22,7 @@ export class RoleDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.roleService.readById(this.token,this.id).subscribe(roles=>{
       this.token = roles.token;
-      this.roles = roles.role;
+      this.roles = roles.role[0];
     })
   }
 

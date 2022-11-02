@@ -18,7 +18,7 @@ export class FollowupGetOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.followUpService.readById(this.token,this.id).subscribe(followUps =>{
-      this.followup = followUps.followups;
+      this.followup = followUps.followups[0][0];
       this.token = followUps.token;
     })
   }
@@ -26,7 +26,7 @@ export class FollowupGetOneComponent implements OnInit {
   
 
   back(): void {
-    this.router.navigate(["/"+this.token+"/followups/"+this.followup.task_id]);
+    this.router.navigate(["/"+this.token+"/followups/"+this.id]);
   }
 
 }

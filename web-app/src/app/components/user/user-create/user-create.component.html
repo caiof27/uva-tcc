@@ -10,10 +10,15 @@
             <input matInput placeholder="Nome de Usuario" [(ngModel)]="users.username" name="username" />
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Senha" [(ngModel)]="users.password" name="password" />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Cargo" [(ngModel)]="users.role_id" name="role_id" />
+            <input matInput type="password" placeholder="Senha" [(ngModel)]="users.password" name="password" />
+          </mat-form-field >
+          <mat-form-field appearance="fill">
+            <mat-label>Dependencia</mat-label>
+            <select matNativeControl (change)="selectDependency($event)">
+              <option value="" selected disabled></option>
+              <option *ngFor="let option of options" [value]="option.id"
+                      >{{ option.role }}</option>
+            </select>
           </mat-form-field>
         </form>
         

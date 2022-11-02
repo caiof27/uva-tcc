@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TaskService } from '../../task/task.service';
 import { FollowUpModel } from '../followup.model';
 import { FollowupService } from '../followup.service';
 
@@ -15,11 +16,17 @@ export class FollowupCreateComponent implements OnInit {
 
   followUp: any = {
     description: "",
+    task_id: this.id
   };
 
-  constructor(private followUpService: FollowupService, private router: Router,private route: ActivatedRoute) { }
+  task_name!:string;
+
+  constructor(private followUpService: FollowupService, private router: Router,private route: ActivatedRoute,private taskService: TaskService) { }
 
   ngOnInit(): void {
+    this.taskService.readById(this.token,this.id).subscribe(task=>{
+      this.task_name = `ID: ${task.task[0].id} - Titulo: ${task.task[0].title}`
+    })
   }
 
   createFollowUp(): void {

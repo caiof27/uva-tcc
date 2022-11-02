@@ -26,7 +26,7 @@ export class UserDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.userService.readById(this.token,this.id).subscribe(users =>{
       this.token = users.token;
-      this.users = users.user;
+      this.users = users.user[0];
     })
   }
 

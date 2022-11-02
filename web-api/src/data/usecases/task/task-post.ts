@@ -12,10 +12,7 @@ export class DbTaskPost implements TaskPost{
     }
 
     async post(taskData: TaskModel): Promise<TaskModel> {
-        console.log("Data:")
-        console.log(taskData)
         const task = await this.taskRepository.post(taskData);
-        console.log(task)
         return task;
     }
 

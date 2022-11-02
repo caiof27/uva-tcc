@@ -4,13 +4,15 @@ import db from "../../models";
 
 export class RoleRepository implements RoleDeleteRepository, RoleGetAllRepository, RoleGetOneRepository, RolePostRepository, RolePutRepository {
     async getOne(id: number): Promise<RoleModel> {
-        return db.role.findOne({where:{id}})
+        const return_value = await db.sequelize.query(`select roles.id,roles.role,roles.dependency as dependency_id,dependency.role as dependency_role from roles left join roles as dependency on roles.dependency = dependency.id where roles.id = ${id}`);
+        return return_value[0];
     }
     async put(role: RoleModel,roleId:number): Promise<void> {
         await db.role.update(role,{where:{id:roleId}})
     }
     async getAll(): Promise<RoleModel[]> {
-        return await db.role.findAll();
+        const return_value = await db.sequelize.query("select roles.id,roles.role,roles.dependency as dependency_id,dependency.role as dependency_role from roles left join roles as dependency on roles.dependency = dependency.id");
+        return return_value[0];
     }
     async delete(id: number): Promise<void> {
         await db.role.destroy({ where: { id } })

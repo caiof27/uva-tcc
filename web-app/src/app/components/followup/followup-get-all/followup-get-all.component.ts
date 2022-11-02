@@ -11,7 +11,7 @@ import { FollowupService } from '../followup.service';
 export class FollowupGetAllComponent implements OnInit {
 
   followups: any[] = [];
-  displayedColumns = ['id','description','action']
+  displayedColumns = ['id','description','createdBy_name','action']
   id:any = this.route.snapshot.paramMap.get("id");
   token:any = this.route.snapshot.paramMap.get("token");
 
@@ -20,7 +20,7 @@ export class FollowupGetAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.followUpService.read(this.token,this.id).subscribe(followups=>{
-      this.followups = followups.followups;
+      this.followups = followups.followups[0];
       this.token = followups.token;
     });
   }

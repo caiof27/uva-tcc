@@ -6,8 +6,13 @@
           <mat-form-field>
             <input matInput placeholder="Cargo" [(ngModel)]="roles.role" name="role" />
           </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Dependencia" [(ngModel)]="roles.dependency" name="dependency" />
+          <mat-form-field appearance="fill">
+            <mat-label>Dependencia</mat-label>
+              <select matNativeControl (change)="selectDependency($event)">
+                <option value="" selected disabled></option>
+                <option *ngFor="let option of options" [value]="option.id"
+                        >{{ option.role }}</option>
+              </select>
           </mat-form-field>
         </form>
         

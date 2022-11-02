@@ -1,31 +1,34 @@
 'use strict';
 
+
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    return
-    return queryInterface.bulkInsert('roles',[
+    return queryInterface.bulkInsert('status',[
       {
-        role: 'Administrador',
-        dependency:null,
+        status: 'Novo',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        role: 'Tecnico',
-        dependency:1,
+        status: 'Em Andamento',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        role: 'Usuario',
-        dependency:2,
+        status: 'Concluído',
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        status: 'Cancelado',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ]);
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('status', null, {});
   }
 };

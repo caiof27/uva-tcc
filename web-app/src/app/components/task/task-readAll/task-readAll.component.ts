@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskModel } from '../task.model';
 import { TaskService } from '../task.service';
 
@@ -11,21 +11,17 @@ import { TaskService } from '../task.service';
 export class TaskReadAllComponent implements OnInit {
 
   tasks: TaskModel[] = [];
-  token!: string;
-  displayedColumns = ['id','title','priority','status','assignTo','createdBy','action']
+  displayedColumns = ['id','title','priority','status','assignTo','createdBy','action'];
+  token: any = this.route.snapshot.paramMap.get("token");
 
-  constructor(private router: Router,private taskService: TaskService) { }
+  constructor(private router: Router,private taskService: TaskService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     
-    this.taskService.read(this.decodeUrl(this.router.url)).subscribe(tasks=>{
+    this.taskService.read(this.token).subscribe(tasks=>{
       this.tasks = tasks.task
       this.token = tasks.token
     })
-  }
-
-  decodeUrl(url:string): string{
-    return url.split("/")[1]
   }
 
   navigateToTaskCreate(): void {

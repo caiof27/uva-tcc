@@ -12,9 +12,9 @@ export class TaskService {
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
-  showMessage(msg: string, isError: boolean = false): void {
+  showMessage(msg: string, isError: boolean = false, duration:number = 3000): void {
     this.snackBar.open(msg, "X", {
-      duration: 3000,
+      duration: duration,
       horizontalPosition: "right",
       verticalPosition: "top",
       panelClass: isError ? ["msg-error"] : ["msg-sucess"],

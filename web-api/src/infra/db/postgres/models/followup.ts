@@ -7,6 +7,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
     id!: number;
     description!: string;
     task_id!: number;
+    createdBy!:number;
     static associate(models:any ) {
       // define association here
     }
@@ -24,6 +25,9 @@ module.exports = (sequelize:any, DataTypes:any) => {
     task_id: { 
       type: DataTypes.INTEGER, allowNull: false 
     },
+    createdBy: {
+      type: DataTypes.INTEGER, allowNull: false 
+    }
   }, {
     sequelize,
     modelName: 'followup',

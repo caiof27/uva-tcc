@@ -7,8 +7,10 @@ import { token } from "../../../data/protocols/jwt";
 
 export class FollowUpPostController implements Controller {
   private readonly followUpPost: FollowUpPost;
-  constructor(followUpPost: FollowUpPost) {
+  private readonly jwt: token;
+  constructor(followUpPost: FollowUpPost,jwt:token) {
     this.followUpPost = followUpPost;
+    this.jwt = jwt;
   }
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     
@@ -22,9 +24,11 @@ export class FollowUpPostController implements Controller {
 
     const body = httpRequest.body;
     const token = httpRequest.params["token"];
-    const id = httpRequest.params["id"];
+    const task_id = httpRequest.params["id"];
 
-    const followups = await this.followUpPost.post(Object.assign(body,{task_id:id}));
+    const {id} = this.jwt.decode(token);
+
+    const followups = await this.followUpPost.post(Object.assign(body,{task_id,createdBy:id}));
 
     return ok({followups,token});
   }

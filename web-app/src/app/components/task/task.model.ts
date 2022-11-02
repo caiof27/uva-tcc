@@ -9,4 +9,7 @@ export interface TaskModel {
   finishedAt?: Date;
   createdAt?: Date;
   updatedAt?: Date;
+  status_name?:string;
+  createdBy_name?:string;
+  assignTo_name?:string;
 }

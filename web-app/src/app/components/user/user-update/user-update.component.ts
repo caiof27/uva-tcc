@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RoleModel } from '../../role/role.model';
+import { RoleService } from '../../role/role.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -20,19 +22,31 @@ export class UserUpdateComponent implements OnInit {
     role_id:null
   }
 
+  options:RoleModel[] = [];
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  selectedDependency!:number;
+
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,private roleService: RoleService) { }
 
   ngOnInit(): void {
     this.userService.readById(this.token,this.id).subscribe(users =>{
       this.token = users.token;
-      this.users.name = users.user.name;
-      this.users.username = users.user.username;
-      this.users.role_id = users.user.role_id;
+      this.users = users.user[0];
     })
+    this.roleService.read(this.token).subscribe(roles=>{
+      this.token = roles.token;
+      this.options = roles.role;
+      for(const iterator of roles.role){
+        if(iterator.id == this.users.role_id){
+            this.selectedDependency = iterator.id;
+        }
+      }
+    })
+
   }
 
   atualizarUser():void{
+    this.users.role_id = this.selectedDependency;
     this.userService.update(this.token,this.users,this.id).subscribe(users =>{
       this.token = users.token;
       this.userService.showMessage("Usuario Atualizado")
@@ -42,6 +56,10 @@ export class UserUpdateComponent implements OnInit {
 
   back():void{
     this.router.navigate(["/"+this.token+"/users/"+this.id]);
+  }
+
+  selectDependency(event:any):void{
+    this.selectedDependency = parseInt((event.target as HTMLSelectElement).value);
   }
 
 }

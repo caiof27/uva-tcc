@@ -21,7 +21,7 @@ export class TaskReadOneComponent implements OnInit {
   task!: TaskModel;
   tiles!: Tile[];
 
-  token!:string;
+  token: any = this.route.snapshot.paramMap.get("token");
   current_task!:number;
   hasTechnicalAcess: boolean = false;
   return_url:string = ""; 
@@ -38,16 +38,16 @@ export class TaskReadOneComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("idTask");
     if (id){
-      this.taskService.readById(this.decodeUrl(this.router.url),id).subscribe(task => {
-        this.task = task.task;
+      this.taskService.readById(this.token,id).subscribe(task => {
+        this.task = task.task[0];
         this.tiles = [
           {label:"Prioridade: ", value:this.task.priority, cols:6},
-          {label:"Status: ", value:this.task.status, cols:6},
+          {label:"Status: ", value:this.task.status_name, cols:6},
           {label:"Finalizado em: ", value: this.task.finishedAt, cols:4},
           {label:"Criado em: ", value: this.task.createdAt, cols:4},
           {label:"Atualizado em: ", value: this.task.updatedAt, cols:4},
-          {label:"Criado Por: ", value: this.task.createdBy, cols:6},
-          {label:"Atribuido à: ", value: this.task.assignTo, cols:6},
+          {label:"Criado Por: ", value: this.task.createdBy_name, cols:6},
+          {label:"Atribuido à: ", value: this.task.assignTo_name, cols:6},
           {label:"Descrição: ", value:this.task.description, cols:12},      
         ]
         this.token = task.token;
@@ -59,10 +59,6 @@ export class TaskReadOneComponent implements OnInit {
         this.return_url = `/${this.token}/tasks/${this.task.id}`;
       });
     }
-  }
-
-  decodeUrl(url:string): string{
-    return url.split("/")[1]
   }
 
   back(): void {
@@ -78,10 +74,32 @@ export class TaskReadOneComponent implements OnInit {
     });
   }
 
-  cancelTask():void{
-    this.task.status = 2;
+  statusTask(status_id:number):void{
+
+    if(this.task.assignTo == null){
+      return this.taskService.showMessage("O Chamado precisa ser atribuido antes de atualizar o seu status",true,10000);
+    }
+    if(status_id == 3 && this.task.priority == null){
+      return this.taskService.showMessage("O Chamado precisa ter uma priodade antes de ser finalizado",true,10000);
+    }
+    this.task.status = status_id;
+    if(status_id == 3){
+      this.task.finishedAt = new Date();
+    }
     this.taskService.update(this.token,this.task).subscribe(() => {
-      this.taskService.showMessage("Chamado cancelado");
+      if(status_id == 4){
+        this.taskService.showMessage("Chamado cancelado");
+      }else{
+        this.taskService.showMessage("Chamado Atualizado");
+      }
+      window.location.reload()
+    });
+  }
+
+  priorityTask(priority:string):void{
+    this.task.priority = priority;
+    this.taskService.update(this.token,this.task).subscribe(() => {
+      this.taskService.showMessage("Chamado Atualizado");
       window.location.reload()
     });
   }

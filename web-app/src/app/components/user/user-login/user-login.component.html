@@ -1,4 +1,3 @@
-<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
 <mat-card-content>
   <mat-card>
       <mat-card-title>Login</mat-card-title>
@@ -7,7 +6,7 @@
           <input matInput placeholder="Nome de usuario" [(ngModel)]="users.username" name="username" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Senha" [(ngModel)]="users.password" name="password" />
+          <input matInput type="password" placeholder="Senha" [(ngModel)]="users.password" name="password" />
         </mat-form-field>
       </form>
       <button mat-raised-button (click)="login()" color="primary">

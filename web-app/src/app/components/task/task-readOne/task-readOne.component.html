@@ -4,11 +4,16 @@
     <mat-card-title >
       <strong>ID:</strong> {{task.id}}
       <strong>Titulo:</strong> {{task.title}}
-      <button mat-raised-button *ngIf="hasTechnicalAcess" (click)="assignToMe()">Atribuir para mim</button>
 
-      <button mat-raised-button *ngIf="hasTechnicalAcess" (click)="cancelTask()">Cancelar</button>
-
+      
       <button mat-raised-button (click)="followUp()">Acompanhamento</button>
+
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status != 3"  (click)="priorityTask('Alto')">Alto</button>
+
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status != 3"  (click)="priorityTask('Medio')">Medio</button>
+
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status != 3"  (click)="priorityTask('Baixo')">Baixo</button>
+
     </mat-card-title>
 
       
@@ -29,9 +34,15 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-    <button mat-raised-button (click)="back()">Voltar</button>
+      <button mat-raised-button (click)="back()">Voltar</button>
 
-    
+    <div class="right">
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status != 4" (click)="assignToMe()">Atribuir para mim</button>
+
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status == 1"  (click)="statusTask(2)">Iniciar Chamado</button>
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status == 2" (click)="statusTask(3)">Finalizar Chamado</button>
+      <button mat-raised-button *ngIf="hasTechnicalAcess && task.status != 3" (click)="statusTask(4)">Cancelar Chamado</button>
+    </div>
 
   </mat-card>
 </mat-card-content>

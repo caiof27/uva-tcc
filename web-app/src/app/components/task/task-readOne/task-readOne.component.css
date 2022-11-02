@@ -28,3 +28,10 @@ mat-card-title .mat-raised-button{
     float: right;
     width: 90%;
 }
+
+mat-card .right{
+    float: right;
+}
+mat-card .right .mat-raised-button{
+    margin-left: 10px !important;
+}
