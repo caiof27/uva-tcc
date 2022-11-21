@@ -13,13 +13,3 @@ table {
 .delete > i {
     color: red
 }
-
-.mat-sidenav-container{
-    float: left;
-    width: 10%;
-}
-
-.mat-card-content{
-    float: right;
-    width: 90%;
-}

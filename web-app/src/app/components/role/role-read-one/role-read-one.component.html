@@ -1,11 +1,13 @@
+<div class="body-class">
 <mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
 <mat-card-content>
     <mat-card>
-        
-        <mat-card-title>
-            <button mat-raised-button (click)="editRole()" color="primary"> Editar</button>
-        </mat-card-title>
-        <form>
+        <div class="body-button">
+          <mat-card-title>
+              <button mat-raised-button (click)="editRole()" color="primary"> Editar</button>
+          </mat-card-title>
+        </div>
+          <form>
           <mat-form-field>
             <mat-label>Cargo</mat-label>
             <input matInput placeholder="Cargo" [(ngModel)]="roles.role" name="role" disabled/>
@@ -21,3 +23,4 @@
         
       </mat-card>
 </mat-card-content>
+</div>

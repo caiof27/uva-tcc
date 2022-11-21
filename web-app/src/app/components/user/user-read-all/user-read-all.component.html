@@ -1,9 +1,12 @@
+
+<div class="body-class">
 <mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
 <mat-card-content>
-
-  <button mat-raised-button (click)="navigateToUserCreate()"color="primary">
-    Criar usuario
-  </button>
+  <div class="body-button">
+    <button mat-raised-button (click)="navigateToUserCreate()"color="primary">
+      Criar usuario
+    </button>
+  </div>
     <div class="mat-elevation-z4">
         <table mat-table [dataSource]="users">
           <!-- Id Column -->
@@ -49,3 +52,4 @@
       </div>
       
 </mat-card-content>
+</div>

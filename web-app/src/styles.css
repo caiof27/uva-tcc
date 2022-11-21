@@ -34,3 +34,17 @@ button {
 }
 
 
+.body-class{
+  display: flex;
+  gap: 10px;
+}
+
+.body-button{
+  margin: 20px 0 20px 0;
+}
+
+.mat-card-content{
+  flex-grow: 1;
+} 
+
+

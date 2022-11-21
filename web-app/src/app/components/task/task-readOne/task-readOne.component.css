@@ -19,16 +19,6 @@ mat-card-title .mat-raised-button{
     float: right;
 }
 
-.mat-sidenav-container{
-    float: left;
-    width: 10%;
-}
-
-.mat-card-content{
-    float: right;
-    width: 90%;
-}
-
 mat-card .right{
     float: right;
 }

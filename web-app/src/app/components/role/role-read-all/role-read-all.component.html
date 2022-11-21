@@ -1,8 +1,11 @@
+<div class="body-class">
 <mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
 <mat-card-content>
+  <div class="body-button">
     <button mat-raised-button (click)="navigateToRoleCreate()"color="primary">
         Criar Cargo
       </button>
+    </div>
         <div class="mat-elevation-z4">
             <table mat-table [dataSource]="roles">
               <!-- Id Column -->
@@ -41,3 +44,4 @@
             </table>
           </div>
 </mat-card-content>
+</div>

@@ -1,19 +1,21 @@
-<mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
-<mat-card-content>
-  <mat-card>
-    <mat-card-title>Novo Chamado</mat-card-title>
-    <form>
-      <mat-form-field>
-        <input matInput placeholder="Titulo" [(ngModel)]="task.title" name="title" />
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Descrição" [(ngModel)]="task.description" name="description" />
-      </mat-form-field>
-    </form>
-    <button mat-raised-button (click)="createTask()" color="primary">
-      Salvar
-    </button>
+<div class="body-class">
+  <mat-sidenav-container><app-nav></app-nav></mat-sidenav-container>
+  <mat-card-content>
+    <mat-card>
+      <mat-card-title>Novo Chamado</mat-card-title>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Titulo" [(ngModel)]="task.title" name="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Descrição" [(ngModel)]="task.description" name="description" />
+        </mat-form-field>
+      </form>
+      <button mat-raised-button (click)="createTask()" color="primary">
+        Salvar
+      </button>
 
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
-  </mat-card>
-</mat-card-content>
+      <button mat-raised-button (click)="cancel()">Cancelar</button>
+    </mat-card>
+  </mat-card-content>
+</div>
